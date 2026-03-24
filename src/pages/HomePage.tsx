@@ -16,21 +16,23 @@ const IMAGES = {
 };
 
 const journeyCards = [
-  { title: "Classic Egypt", image: IMAGES.pyramids },
-  { title: "Nile Cruise", image: IMAGES.nile },
-  { title: "White Desert", image: IMAGES.desert },
-  { title: "Luxor Temples", image: IMAGES.temple },
+  { title: "Classic Egypt Tour", subtitle: "Cairo, Luxor, Aswan", image: IMAGES.pyramids },
+  { title: "Luxury Nile Cruise Package", subtitle: "Sail the ancient river", image: IMAGES.nile },
+  { title: "White Desert Adventure", subtitle: "Under the stars", image: IMAGES.desert },
+  { title: "Private Pyramids Experience", subtitle: "Exclusive access", image: IMAGES.temple },
+  { title: "Ancient Temples Journey", subtitle: "Luxor & Karnak", image: IMAGES.luxor },
+  { title: "Red Sea & Sinai Escape", subtitle: "Coast & mountains", image: IMAGES.family },
 ];
 
 const destinations = [
-  { name: "Cairo & Giza", image: IMAGES.cairo },
-  { name: "Luxor & Karnak", image: IMAGES.luxor },
-  { name: "Aswan & Abu Simbel", image: IMAGES.nile },
-  { name: "Nile Cruises", image: IMAGES.nile },
-  { name: "Siwa Oasis", image: IMAGES.siwa },
-  { name: "White Desert", image: IMAGES.desert },
-  { name: "Alexandria", image: IMAGES.pyramids },
-  { name: "Sinai", image: IMAGES.desert },
+  { name: "Cairo & Giza", image: IMAGES.cairo, slug: "cairo-giza" },
+  { name: "Luxor & Karnak", image: IMAGES.luxor, slug: "luxor-karnak" },
+  { name: "Aswan & Abu Simbel", image: IMAGES.nile, slug: "aswan-abu-simbel" },
+  { name: "Nile Cruises", image: IMAGES.nile, slug: "nile-cruises" },
+  { name: "Siwa Oasis", image: IMAGES.siwa, slug: "siwa-oasis" },
+  { name: "White Desert", image: IMAGES.desert, slug: "white-desert" },
+  { name: "Alexandria", image: IMAGES.pyramids, slug: "alexandria" },
+  { name: "Sinai", image: IMAGES.desert, slug: "sinai" },
 ];
 
 const testimonials = [
@@ -40,11 +42,11 @@ const testimonials = [
 ];
 
 const blogArticles = [
-  { title: "Best Time to Visit Egypt in 2026", image: IMAGES.pyramids },
-  { title: "19 Top Luxury Hotels in Cairo", image: IMAGES.cairo },
-  { title: "Ultimate Guide to Nile Cruises", image: IMAGES.nile },
-  { title: "Hidden Gems of Luxor Temple", image: IMAGES.luxor },
-  { title: "A First-Timer's Guide to Egypt", image: IMAGES.temple },
+  { title: "Best Time to Visit Egypt in 2026", image: IMAGES.pyramids, slug: "best-time-to-visit-egypt" },
+  { title: "19 Top Luxury Hotels in Cairo", image: IMAGES.cairo, slug: "luxury-hotels-cairo" },
+  { title: "Ultimate Guide to Nile Cruises", image: IMAGES.nile, slug: "guide-to-nile-cruises" },
+  { title: "Hidden Gems of Luxor Temple", image: IMAGES.luxor, slug: "hidden-gems-luxor" },
+  { title: "A First-Timer's Guide to Egypt", image: IMAGES.temple, slug: "first-timers-guide-egypt" },
 ];
 
 function useReveal() {
@@ -128,10 +130,10 @@ export default function HomePage() {
       <section ref={storyRef} className="section-cream py-20 md:py-28 px-6">
         <div className="max-w-4xl mx-auto text-center mb-14">
           <h2 className="reveal heading-serif text-3xl md:text-5xl text-foreground mb-6">
-            Your trip, <em className="italic">your story</em>
+            Your Journey. Your Egypt. <em className="italic">Your Story.</em>
           </h2>
           <p className="reveal reveal-delay-1 text-muted-foreground font-body max-w-2xl mx-auto leading-relaxed">
-            Every trip we plan is one of a kind. No matter where in Egypt you want to go, our experts' honest advice and first-hand knowledge ensure each adventure is more memorable than the last.
+            Every Egypt travel experience we craft is uniquely yours. Our expert Egypt tour specialists combine first-hand knowledge, honest advice, and deep local connections to design private Egypt trips that go beyond the ordinary — from the pyramids of Giza to the silence of the White Desert.
           </p>
         </div>
         <div className="reveal reveal-delay-2 max-w-6xl mx-auto">
@@ -144,9 +146,12 @@ export default function HomePage() {
               >
                 <img src={card.image} alt={card.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 flex items-center gap-2">
-                  <MapPin size={14} className="text-gold" />
-                  <span className="text-white font-heading text-xl">{card.title}</span>
+                <div className="absolute bottom-6 left-6">
+                  <div className="flex items-center gap-2">
+                    <MapPin size={14} className="text-gold" />
+                    <span className="text-white font-heading text-xl">{card.title}</span>
+                  </div>
+                  {card.subtitle && <p className="text-white/70 text-sm font-body mt-1 ml-6">{card.subtitle}</p>}
                 </div>
               </Link>
             ))}
@@ -174,14 +179,15 @@ export default function HomePage() {
           <ul className="space-y-4">
             {destinations.map((d, i) => (
               <li key={d.name}>
-                <button
+              <Link
+                  to={`/destination/${d.slug}`}
                   onMouseEnter={() => setActiveDest(i)}
-                  className={`font-heading text-xl md:text-2xl transition-all duration-300 text-left ${
+                  className={`font-heading text-xl md:text-2xl transition-all duration-300 text-left block ${
                     i === activeDest ? "text-foreground font-semibold" : "text-foreground/35"
                   }`}
                 >
                   {d.name}
-                </button>
+                </Link>
               </li>
             ))}
           </ul>
@@ -327,7 +333,7 @@ export default function HomePage() {
           <div className="reveal reveal-delay-1">
             <HorizontalCarousel showDots dotCount={5}>
               {blogArticles.map((article) => (
-                <div key={article.title} className="flex-shrink-0 w-64 md:w-72 group cursor-pointer">
+                <Link to={`/article/${article.slug}`} key={article.title} className="flex-shrink-0 w-64 md:w-72 group">
                   <div className="relative h-80 rounded-lg overflow-hidden border-4 border-white shadow-sm">
                     <img src={article.image} alt={article.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -336,7 +342,7 @@ export default function HomePage() {
                       <span className="text-gold text-xs font-body mt-2 inline-block">Read more →</span>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </HorizontalCarousel>
           </div>

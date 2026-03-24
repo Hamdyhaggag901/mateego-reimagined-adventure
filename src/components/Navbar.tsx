@@ -57,7 +57,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2 text-xs tracking-widest">
             <Phone size={13} className={scrolled ? "text-foreground" : "text-white"} />
             <span className={`hidden sm:inline ${scrolled ? "text-foreground" : "text-white"}`}>
-              +1 (800) MATEEGO
+              +201121012676
             </span>
           </div>
 

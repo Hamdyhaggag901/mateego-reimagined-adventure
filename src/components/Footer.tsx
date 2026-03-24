@@ -54,7 +54,7 @@ export default function Footer() {
           {/* Get in Touch */}
           <div>
             <h4 className="text-gold font-heading text-xl mb-6">Get in Touch</h4>
-            <p className="text-sm mb-2">+1 (800) MATEEGO</p>
+            <p className="text-sm mb-2">+201121012676</p>
             <p className="text-sm mb-2">enquire@mateegoexplorers.com</p>
             <p className="text-sm mb-4">
               <span className="text-white/50 text-xs">Press Enquiries:</span><br />
