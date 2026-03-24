@@ -1,4 +1,5 @@
 const WP_API_URL = "https://mateegoexplorers.com/wp-json/wp/v2/trip";
+const WP_POSTS_URL = "https://mateegoexplorers.com/wp-json/wp/v2/posts";
 
 export interface WPTrip {
   id: number;
