@@ -67,3 +67,41 @@ export async function fetchTrips(): Promise<Trip[]> {
   const data: WPTrip[] = await res.json();
   return data.map(mapWPTrip);
 }
+
+export interface WPPost {
+  id: number;
+  slug: string;
+  title: { rendered: string };
+  excerpt: { rendered: string };
+  content: { rendered: string };
+  featured_media: number;
+  _embedded?: {
+    "wp:featuredmedia"?: Array<{ source_url: string }>;
+  };
+}
+
+export interface Post {
+  id: number;
+  slug: string;
+  title: string;
+  excerpt: string;
+  image: string;
+}
+
+function mapWPPost(p: WPPost): Post {
+  const image = p._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "";
+  return {
+    id: p.id,
+    slug: p.slug,
+    title: p.title?.rendered ? stripHtml(p.title.rendered) : "",
+    excerpt: p.excerpt?.rendered ? stripHtml(p.excerpt.rendered).trim() : "",
+    image,
+  };
+}
+
+export async function fetchPosts(): Promise<Post[]> {
+  const res = await fetch(`${WP_POSTS_URL}?per_page=50&_embed`);
+  if (!res.ok) throw new Error(`Failed to fetch posts: ${res.status}`);
+  const data: WPPost[] = await res.json();
+  return data.map(mapWPPost);
+}
