@@ -5,23 +5,55 @@ import { Search, Menu, X, Phone, MapPin } from "lucide-react";
 const MENU_DATA = [
   {
     title: "JOURNEYS",
-    links: ["Private Journeys", "Small Group", "Nile Cruises", "Desert Safari", "Family", "Extensions"],
+    links: [
+      { label: "Private Journeys", to: "/journeys" },
+      { label: "Small Group", to: "/journeys" },
+      { label: "Nile Cruises", to: "/destination/nile-cruises" },
+      { label: "Desert Safari", to: "/destination/white-desert" },
+      { label: "Family", to: "/journeys" },
+      { label: "Extensions", to: "/journeys" },
+    ],
   },
   {
     title: "EXPERIENCES",
-    links: ["Cultural Immersion", "Hot Air Balloon", "VIP Tomb Access", "Nile Felucca", "Cooking Class", "Photography Tour"],
+    links: [
+      { label: "Cultural Immersion", to: "/journeys" },
+      { label: "Hot Air Balloon", to: "/destination/luxor-karnak" },
+      { label: "VIP Tomb Access", to: "/destination/luxor-karnak" },
+      { label: "Nile Felucca", to: "/destination/aswan-abu-simbel" },
+      { label: "Cooking Class", to: "/journeys" },
+      { label: "Photography Tour", to: "/journeys" },
+    ],
   },
   {
     title: "INSPIRATION",
-    links: ["Travel Guides", "The Journal", "Egypt Insights", "Restorative Journeys"],
+    links: [
+      { label: "Travel Guides", to: "/article/first-timers-guide-egypt" },
+      { label: "The Journal", to: "/article/best-time-to-visit-egypt" },
+      { label: "Egypt Insights", to: "/article/hidden-gems-luxor" },
+      { label: "Restorative Journeys", to: "/article/guide-to-nile-cruises" },
+    ],
   },
   {
     title: "ABOUT EGYPT",
-    links: ["When to Go", "Visa & Entry", "Health & Safety", "What to Pack", "Getting Around"],
+    links: [
+      { label: "When to Go", to: "/article/best-time-to-visit-egypt" },
+      { label: "Visa & Entry", to: "/article/first-timers-guide-egypt" },
+      { label: "Health & Safety", to: "/article/first-timers-guide-egypt" },
+      { label: "What to Pack", to: "/article/first-timers-guide-egypt" },
+      { label: "Getting Around", to: "/article/first-timers-guide-egypt" },
+    ],
   },
   {
     title: "ABOUT US",
-    links: ["Our Story", "What We Do", "Testimonials", "Press", "Meet the Team", "Careers"],
+    links: [
+      { label: "Our Story", to: "/about" },
+      { label: "What We Do", to: "/about" },
+      { label: "Testimonials", to: "/about" },
+      { label: "Press", to: "/about" },
+      { label: "Meet the Team", to: "/about" },
+      { label: "Careers", to: "/contact" },
+    ],
   },
 ];
 
@@ -102,13 +134,13 @@ export default function Navbar() {
                 </h3>
                 <ul className="space-y-3">
                   {section.links.map((link) => (
-                    <li key={link}>
+                    <li key={link.label}>
                       <Link
-                        to="/journeys"
+                        to={link.to}
                         className="text-white/70 text-sm hover:text-gold transition-colors duration-200 font-body"
                         onClick={() => setMenuOpen(false)}
                       >
-                        {link}
+                        {link.label}
                       </Link>
                     </li>
                   ))}
