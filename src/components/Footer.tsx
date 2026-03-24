@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
 import { Facebook, Youtube, Instagram } from "lucide-react";
 
-const destinations = ["Cairo", "Luxor", "Aswan", "Nile Cruises", "Siwa", "White Desert", "Alexandria", "Sinai"];
+const destinations = [
+  { label: "Cairo", to: "/destination/cairo-giza" },
+  { label: "Luxor", to: "/destination/luxor-karnak" },
+  { label: "Aswan", to: "/destination/aswan-abu-simbel" },
+  { label: "Nile Cruises", to: "/destination/nile-cruises" },
+  { label: "Siwa", to: "/destination/siwa-oasis" },
+  { label: "White Desert", to: "/destination/white-desert" },
+  { label: "Alexandria", to: "/destination/alexandria" },
+  { label: "Sinai", to: "/destination/sinai" },
+];
 const journeys = ["Classic Egypt", "Nile Cruises", "Desert Safari", "Private Tours", "Family Trips", "About Us", "Careers"];
 
 export default function Footer() {
@@ -44,8 +53,8 @@ export default function Footer() {
             <h4 className="text-gold font-heading text-xl mb-6">Destinations</h4>
             <ul className="space-y-2.5">
               {destinations.map((d) => (
-                <li key={d}>
-                  <Link to="/journeys" className="text-sm hover:text-gold transition-colors">{d}</Link>
+                <li key={d.label}>
+                  <Link to={d.to} className="text-sm hover:text-gold transition-colors">{d.label}</Link>
                 </li>
               ))}
             </ul>
