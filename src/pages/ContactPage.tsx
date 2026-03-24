@@ -49,7 +49,7 @@ export default function ContactPage() {
             <div className="space-y-5 font-body text-sm">
               <div>
                 <h4 className="font-bold text-foreground mb-1">Phone</h4>
-                <p className="text-muted-foreground">+1 (800) MATEEGO</p>
+                <p className="text-muted-foreground">+201121012676</p>
               </div>
               <div>
                 <h4 className="font-bold text-foreground mb-1">Email</h4>
@@ -68,7 +68,7 @@ export default function ContactPage() {
 
             {/* WhatsApp CTA */}
             <a
-              href="https://wa.me/18001234567"
+              href="https://wa.me/201121012676"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-8 inline-flex items-center gap-3 rounded-full px-6 py-3 text-sm font-body text-white transition-all hover:opacity-90 active:scale-95"
