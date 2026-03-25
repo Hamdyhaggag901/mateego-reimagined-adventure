@@ -127,38 +127,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 2 — Your trip, your story */}
-      <section ref={storyRef} className="section-cream py-20 md:py-28 px-6">
-        <div className="max-w-4xl mx-auto text-center mb-14">
-          <h2 className="reveal heading-serif text-3xl md:text-5xl text-foreground mb-6">
-            Your Journey. Your Egypt. <em className="italic">Your Story.</em>
-          </h2>
-          <p className="reveal reveal-delay-1 text-muted-foreground font-body max-w-2xl mx-auto leading-relaxed">
-            Every Egypt travel experience we craft is uniquely yours. Our expert Egypt tour specialists combine first-hand knowledge, honest advice, and deep local connections to design private Egypt trips that go beyond the ordinary — from the pyramids of Giza to the silence of the White Desert.
-          </p>
-        </div>
-        <div className="reveal reveal-delay-2 max-w-6xl mx-auto">
-          <HorizontalCarousel>
-            {journeyCards.map((card) => (
-              <Link
-                to="/journeys"
-                key={card.title}
-                className="flex-shrink-0 w-72 md:w-80 h-96 rounded-lg overflow-hidden relative group"
-              >
-                <img src={card.image} alt={card.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6">
-                  <div className="flex items-center gap-2">
-                    <MapPin size={14} className="text-gold" />
-                    <span className="text-white font-heading text-xl">{card.title}</span>
-                  </div>
-                  {card.subtitle && <p className="text-white/70 text-sm font-body mt-1 ml-6">{card.subtitle}</p>}
-                </div>
-              </Link>
-            ))}
-          </HorizontalCarousel>
-        </div>
-      </section>
+      {/* SECTION 2 — Your Journey */}
+      <JourneySection />
 
       {/* SECTION 3 — Destinations Split */}
       <section ref={destRef} className="flex flex-col md:flex-row min-h-[80vh]">
