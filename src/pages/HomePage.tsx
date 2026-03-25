@@ -192,27 +192,56 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 5 — Trip Types */}
-      <section ref={typesRef} className="py-4 px-4">
-        <div className="reveal max-w-7xl mx-auto grid md:grid-cols-2 gap-6">
-          <Link to="/journeys" className="relative h-[500px] overflow-hidden rounded-lg group">
-            <img src={IMAGES.temple} alt="Private Journeys" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-            <div className="absolute bottom-8 left-8 bg-cream/90 backdrop-blur-sm p-6 rounded-lg max-w-xs">
-              <span className="text-xs text-gold uppercase tracking-widest font-body">Tailor-made</span>
-              <h3 className="font-heading text-2xl text-foreground mt-1">Private Journeys</h3>
-              <p className="text-sm text-muted-foreground font-body mt-2">Find your perfect Egypt experience</p>
-            </div>
-          </Link>
-          <Link to="/journeys" className="relative h-[500px] overflow-hidden rounded-lg group">
-            <img src={IMAGES.family} alt="Family Adventures" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-            <div className="absolute bottom-8 right-8 bg-near-black/90 backdrop-blur-sm p-6 rounded-lg max-w-xs">
-              <span className="text-xs text-gold uppercase tracking-widest font-body">Lasting memories</span>
-              <h3 className="font-heading text-2xl text-white mt-1">Family Adventures</h3>
-              <p className="text-sm text-white/70 font-body mt-2">Set off on a bespoke trip, guided by experts</p>
-            </div>
-          </Link>
+      {/* SECTION 5 — Trip Types (A&K Style) */}
+      <section ref={typesRef} className="bg-background py-20 md:py-28 px-6">
+        <div className="reveal max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
+          {/* Left side — heading + CTA */}
+          <div className="md:w-1/4 text-center md:text-left shrink-0">
+            <h2 className="font-heading text-3xl md:text-[38px] text-foreground leading-snug italic mb-8">
+              What kind of trip are you looking for?
+            </h2>
+            <Link
+              to="/trip-planner"
+              className="inline-block bg-foreground text-background uppercase tracking-[0.15em] text-xs font-body px-8 py-3.5 transition-all duration-300 hover:opacity-90"
+            >
+              Journey Finder
+            </Link>
+          </div>
+
+          {/* Right side — horizontal scrolling cards */}
+          <div className="md:w-3/4 overflow-hidden">
+            <HorizontalCarousel>
+              {[
+                { title: "Classic Egypt Tours", desc: "Timeless journeys through Egypt's greatest ancient wonders", image: IMAGES.pyramids },
+                { title: "Luxury Nile Cruises", desc: "Sail the world's most legendary river in style", image: IMAGES.nile },
+                { title: "Desert Adventures", desc: "Explore Egypt's vast and stunning desert landscapes", image: IMAGES.desert },
+                { title: "Private Experiences", desc: "Exclusive access to Egypt's hidden treasures", image: IMAGES.temple },
+                { title: "Family Journeys", desc: "Create lasting memories with bespoke family trips", image: IMAGES.family },
+              ].map((cat) => (
+                <Link
+                  to="/journeys"
+                  key={cat.title}
+                  className="flex-shrink-0 w-52 md:w-56 group"
+                >
+                  <div className="relative aspect-[3/4] overflow-hidden">
+                    <img
+                      src={cat.image}
+                      alt={cat.title}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                    <h3 className="absolute top-5 left-5 right-5 font-heading text-white text-lg md:text-xl italic leading-tight">
+                      {cat.title}
+                    </h3>
+                    <p className="absolute bottom-5 left-5 right-5 font-body text-white/80 text-xs leading-relaxed">
+                      {cat.desc}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </HorizontalCarousel>
+          </div>
         </div>
       </section>
 
