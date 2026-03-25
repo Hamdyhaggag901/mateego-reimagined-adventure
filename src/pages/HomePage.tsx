@@ -34,11 +34,11 @@ const testimonials = [
 ];
 
 const blogArticles = [
-  { title: "Best Time to Visit Egypt in 2026", image: IMAGES.pyramids, slug: "best-time-to-visit-egypt" },
-  { title: "19 Top Luxury Hotels in Cairo", image: IMAGES.cairo, slug: "luxury-hotels-cairo" },
-  { title: "Ultimate Guide to Nile Cruises", image: IMAGES.nile, slug: "guide-to-nile-cruises" },
-  { title: "Hidden Gems of Luxor Temple", image: IMAGES.luxor, slug: "hidden-gems-luxor" },
-  { title: "A First-Timer's Guide to Egypt", image: IMAGES.temple, slug: "first-timers-guide-egypt" },
+  { title: "Best Time to Visit Egypt in 2026", category: "Planning", image: "https://images.unsplash.com/photo-1539768942893-daf3538e9819?w=800&q=80", slug: "best-time-to-visit-egypt" },
+  { title: "19 Top Luxury Hotels in Cairo", category: "Hotels", image: "https://images.unsplash.com/photo-1572252009286-268acec5ca0a?w=800&q=80", slug: "luxury-hotels-cairo" },
+  { title: "Ultimate Guide to Nile Cruises", category: "Cruises", image: "https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=800&q=80", slug: "guide-to-nile-cruises" },
+  { title: "Hidden Gems of Luxor Temple", category: "Culture", image: "https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=800&q=80", slug: "hidden-gems-luxor" },
+  { title: "A First-Timer's Guide to Egypt", category: "Guides", image: "https://images.unsplash.com/photo-1553913861-c0fddf2619ee?w=800&q=80", slug: "first-timers-guide-egypt" },
 ];
 
 function useReveal() {
@@ -312,30 +312,52 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 8 — Blog / Get Inspired */}
-      <section ref={blogRef} className="section-cream py-20 md:py-28 px-6">
+      <section ref={blogRef} className="bg-background py-20 md:py-28 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="reveal text-center mb-14">
-            <h2 className="heading-serif text-3xl md:text-5xl text-foreground mb-4">Get inspired</h2>
-            <div className="gold-divider mb-6" />
-            <p className="text-muted-foreground font-body max-w-lg mx-auto">
+          <div className="reveal text-center mb-16">
+            <span className="text-accent text-xs uppercase tracking-[0.2em] font-body font-bold mb-3 block">Journal</span>
+            <h2 className="font-heading text-3xl md:text-5xl text-foreground italic mb-4">Get Inspired</h2>
+            <p className="text-muted-foreground font-body max-w-md mx-auto text-sm leading-relaxed">
               Stories, guides and insights from our Egypt travel specialists
             </p>
           </div>
-          <div className="reveal reveal-delay-1">
-            <HorizontalCarousel showDots dotCount={5}>
-              {blogArticles.map((article) => (
-                <Link to={`/article/${article.slug}`} key={article.title} className="flex-shrink-0 w-64 md:w-72 group">
-                  <div className="relative h-80 rounded-lg overflow-hidden border-4 border-white shadow-sm">
-                    <img src={article.image} alt={article.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <h4 className="text-white font-heading text-lg leading-snug">{article.title}</h4>
-                      <span className="text-gold text-xs font-body mt-2 inline-block">Read more →</span>
-                    </div>
+
+          {/* Featured + Grid Layout */}
+          <div className="reveal reveal-delay-1 grid grid-cols-1 lg:grid-cols-2 gap-5">
+            {/* Featured large card */}
+            <Link to={`/article/${blogArticles[0].slug}`} className="relative aspect-[4/5] lg:aspect-auto lg:row-span-2 overflow-hidden group">
+              <img src={blogArticles[0].image} alt={blogArticles[0].title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute bottom-8 left-8 right-8">
+                <span className="inline-block text-accent text-[10px] uppercase tracking-[0.2em] font-body font-bold mb-3 border border-accent/40 px-3 py-1">{blogArticles[0].category}</span>
+                <h3 className="font-heading text-white text-2xl md:text-3xl italic leading-tight mb-2">{blogArticles[0].title}</h3>
+                <span className="text-white/60 text-xs font-body tracking-wider uppercase">Read Article →</span>
+              </div>
+            </Link>
+
+            {/* 4 smaller cards in 2x2 grid */}
+            <div className="grid grid-cols-2 gap-5">
+              {blogArticles.slice(1).map((article) => (
+                <Link to={`/article/${article.slug}`} key={article.slug} className="relative aspect-[3/4] overflow-hidden group">
+                  <img src={article.image} alt={article.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
+                  <div className="absolute bottom-5 left-5 right-5">
+                    <span className="inline-block text-accent text-[9px] uppercase tracking-[0.2em] font-body font-bold mb-2">{article.category}</span>
+                    <h4 className="font-heading text-white text-sm md:text-base italic leading-snug">{article.title}</h4>
                   </div>
                 </Link>
               ))}
-            </HorizontalCarousel>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mt-14">
+            <Link
+              to="/journeys"
+              className="inline-block border border-foreground text-foreground uppercase tracking-[0.15em] text-xs font-body px-8 py-3.5 transition-all duration-300 hover:bg-foreground hover:text-background"
+            >
+              View All Articles
+            </Link>
           </div>
         </div>
       </section>
