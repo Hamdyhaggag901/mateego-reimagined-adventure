@@ -66,7 +66,7 @@ export default function HomePage() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeDest, setActiveDest] = useState(0);
   const heroRef = useReveal();
-  const storyRef = useReveal();
+  
   const destRef = useReveal();
   const testRef = useReveal();
   const typesRef = useReveal();
