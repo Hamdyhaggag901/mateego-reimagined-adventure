@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { MapPin, ChevronLeft, ChevronRight, Star, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, Search } from "lucide-react";
 import HorizontalCarousel from "@/components/HorizontalCarousel";
+import JourneySection from "@/components/JourneySection";
 
 const IMAGES = {
   hero: "https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=1200&q=80",
