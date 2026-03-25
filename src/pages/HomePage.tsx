@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { MapPin, ChevronLeft, ChevronRight, Star, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, Search } from "lucide-react";
 import HorizontalCarousel from "@/components/HorizontalCarousel";
+import JourneySection from "@/components/JourneySection";
 
 const IMAGES = {
   hero: "https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=1200&q=80",
@@ -14,15 +15,6 @@ const IMAGES = {
   luxor: "https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=1200&q=80",
   siwa: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&q=80",
 };
-
-const journeyCards = [
-  { title: "Classic Egypt Tour", subtitle: "Cairo, Luxor, Aswan", image: IMAGES.pyramids },
-  { title: "Luxury Nile Cruise Package", subtitle: "Sail the ancient river", image: IMAGES.nile },
-  { title: "White Desert Adventure", subtitle: "Under the stars", image: IMAGES.desert },
-  { title: "Private Pyramids Experience", subtitle: "Exclusive access", image: IMAGES.temple },
-  { title: "Ancient Temples Journey", subtitle: "Luxor & Karnak", image: IMAGES.luxor },
-  { title: "Red Sea & Sinai Escape", subtitle: "Coast & mountains", image: IMAGES.family },
-];
 
 const destinations = [
   { name: "Cairo & Giza", image: IMAGES.cairo, slug: "cairo-giza" },
@@ -74,7 +66,7 @@ export default function HomePage() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeDest, setActiveDest] = useState(0);
   const heroRef = useReveal();
-  const storyRef = useReveal();
+  
   const destRef = useReveal();
   const testRef = useReveal();
   const typesRef = useReveal();
@@ -126,38 +118,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 2 — Your trip, your story */}
-      <section ref={storyRef} className="section-cream py-20 md:py-28 px-6">
-        <div className="max-w-4xl mx-auto text-center mb-14">
-          <h2 className="reveal heading-serif text-3xl md:text-5xl text-foreground mb-6">
-            Your Journey. Your Egypt. <em className="italic">Your Story.</em>
-          </h2>
-          <p className="reveal reveal-delay-1 text-muted-foreground font-body max-w-2xl mx-auto leading-relaxed">
-            Every Egypt travel experience we craft is uniquely yours. Our expert Egypt tour specialists combine first-hand knowledge, honest advice, and deep local connections to design private Egypt trips that go beyond the ordinary — from the pyramids of Giza to the silence of the White Desert.
-          </p>
-        </div>
-        <div className="reveal reveal-delay-2 max-w-6xl mx-auto">
-          <HorizontalCarousel>
-            {journeyCards.map((card) => (
-              <Link
-                to="/journeys"
-                key={card.title}
-                className="flex-shrink-0 w-72 md:w-80 h-96 rounded-lg overflow-hidden relative group"
-              >
-                <img src={card.image} alt={card.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6">
-                  <div className="flex items-center gap-2">
-                    <MapPin size={14} className="text-gold" />
-                    <span className="text-white font-heading text-xl">{card.title}</span>
-                  </div>
-                  {card.subtitle && <p className="text-white/70 text-sm font-body mt-1 ml-6">{card.subtitle}</p>}
-                </div>
-              </Link>
-            ))}
-          </HorizontalCarousel>
-        </div>
-      </section>
+      {/* SECTION 2 — Your Journey */}
+      <JourneySection />
 
       {/* SECTION 3 — Destinations Split */}
       <section ref={destRef} className="flex flex-col md:flex-row min-h-[80vh]">
