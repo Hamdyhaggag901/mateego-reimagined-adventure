@@ -16,15 +16,6 @@ const IMAGES = {
   siwa: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&q=80",
 };
 
-const journeyCards = [
-  { title: "Classic Egypt Tour", subtitle: "Cairo, Luxor, Aswan", image: IMAGES.pyramids },
-  { title: "Luxury Nile Cruise Package", subtitle: "Sail the ancient river", image: IMAGES.nile },
-  { title: "White Desert Adventure", subtitle: "Under the stars", image: IMAGES.desert },
-  { title: "Private Pyramids Experience", subtitle: "Exclusive access", image: IMAGES.temple },
-  { title: "Ancient Temples Journey", subtitle: "Luxor & Karnak", image: IMAGES.luxor },
-  { title: "Red Sea & Sinai Escape", subtitle: "Coast & mountains", image: IMAGES.family },
-];
-
 const destinations = [
   { name: "Cairo & Giza", image: IMAGES.cairo, slug: "cairo-giza" },
   { name: "Luxor & Karnak", image: IMAGES.luxor, slug: "luxor-karnak" },
